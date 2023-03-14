@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="row">
+        <form id="form_login" class="form-signin mg-btm" style="margin: 30px auto;">
+            <h3 class="heading-desc text-center">Đăng nhập với Chrom</h3>
+            <div class="social-box">
+                <div class="row mg-btm">
+                    <div class="col-md-12">
+                        <a href="javascript:void(0)" class="btn btn-primary btn-block" (click)="signInWithFB()">
+                            <i class="icon-facebook"></i> Đăng nhập với Facebook
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="main">
+
+                <input type="text" (keyup)="change_tk(txtemail.value)" class="form-control" #txtemail placeholder="Tài khoản" autofocus>
+                <small id="alter_tk" style="color: red;"></small>
+                <input type="password" (keyup)="change_mk(txtpass.value)" class="form-control" #txtpass placeholder="Mật khẩu">
+                <small id="alter_mk" style="color: red;"></small><br> Bạn chưa có tài khoản? <a href="#" [routerLink]="['/dangky']"> Hãy bắt đầu ở đây</a>
+                <span class="clearfix"></span>
+            </div>
+            <div class="login-footer">
+                <div class="row">
+                    <div class="col-xs-6 col-md-6">
+                        <div class="left-section">
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#foget_passModal">Quên mật khẩu?</a>
+                            <!-- <a [routerLink]="['/dangky']">Đăng ký ngay</a> -->
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-6 pull-right">
+                        <button id="login_" type="button" (click)="loginuser(txtemail.value,txtpass.value)" class="btn btn-large btn-danger pull-right">Đăng nhập</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade bd-example-modal-sm" id="foget_passModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Hỗ trợ lấy lại mật khẩu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Tài khoản</label>
+                    <input type="text" class="form-control" id="txtemail">
+                    <small id="alter_taikhoan_lai" class="form-text text-muted"></small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>

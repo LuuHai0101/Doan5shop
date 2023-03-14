@@ -1,0 +1,147 @@
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Quản lý mô hình</h1>
+    <p class="mb-4">Quản lý mô hình</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-sm-10">
+                    <h6 class="m-0 font-weight-bold text-primary">Danh sách mô hình</h6>
+                </div>
+                <div class="col-sm-2">
+                    <span class="p-buttonset">
+                        <!-- <button pButton pRipple (click)="showDialog()" label="Thêm" icon="pi pi-plus" styleClass="p-button-sm"></button>
+                        <button pButton pRipple class="p-button-success" label="Xuất file" icon="pi pi-file-excel" styleClass="p-button-sm"></button>
+                        <button pButton pRipple class="p-button-danger" label="Xuất file" icon="pi pi-file-pdf" styleClass="p-button-sm"></button> -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="showDialog()">
+                            Thêm mô hình
+                          </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card">
+                <p-table [value]="item" [paginator]="true" [rows]="5" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,15]">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Mã mô hình</th>
+                            <th>Tên mô hình</th>
+                            <th>Hình ảnh</th>
+                            <th>Đơn vị</th>
+                            <th>Giá </th>
+                            <th>Loại mô hình</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-item>
+                        <tr>
+                            <td>{{item.id}}</td>
+                            <td>{{item.tenmon}}</td>
+                            <td><img src="../../../../assets/images/product/{{item.hinhanh}}" style="width: 100px; height: 100px;"></td>
+                            <td>{{item.donvitinh}}</td>
+                            <td>{{item.gia.toLocaleString('vi', {style : 'currency', currency : 'VND'}) }}</td>
+                            <td>{{display_lma(item.idloaimon,bophan)}}</td>
+                            <td>
+                                <span class="p-buttonset">
+                                    <button pButton icon="pi pi-external-link" data-toggle="modal" data-target="#exampleModal" (click)= "showDialogedit(item.id)" pRipple styleClass="p-button-sm"></button>
+                                    <button pButton pRipple class="p-button-warning" (click)="delete_mn(item.id)" icon="pi pi-trash" styleClass="p-button-sm"></button>
+                                    <button pButton pRipple class="p-button-secondary" icon="pi pi-refresh" styleClass="p-button-sm"></button>
+                                </span>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="paginatorleft">
+                        <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+                    </ng-template>
+                    <ng-template pTemplate="paginatorright">
+                        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>
+<p-toast></p-toast>
+<!-- <p-dialog [(visible)]="display" styleClass="mydialog" [style]="{width: '60vw'}">
+    <p-header>
+        Thôg tin món ăn
+    </p-header>
+    <span class="p-float-label">
+        <h5>Tên món</h5>
+        <input type="text" pInputText [(ngModel)]="txttenmon" [style]="{width: '55vw', color:'black'}" required maxlength="255">
+    </span>
+
+    <h5>Hình ảnh</h5>
+    <input type="file" (change)="changeImga($event)">
+    <div id="imgTest" class="mt-3"></div>
+    <span class="p-float-label">
+                    <h5>Đơn vị tính</h5>
+                    <input type="text" id="txtdonvi" name="txtdonvi" pInputText [(ngModel)]="txtdonvi" [style]="{width: '55vw', color:'black'}" required maxlength="255"> 
+                </span>
+    <span class="p-float-label">
+                    <h5>Đơn giá</h5>
+                    <input type="text" id="txtdongia" name="txtdongia" pInputText [(ngModel)]="txtdongia" [style]="{width: '55vw' , color:'black'}" required maxlength="255"> 
+                </span>
+    <span class="p-float-label"> 
+                    <h5>Nội dung</h5>
+                    <ckeditor [(ngModel)]="ckeditorContent" [style]="{color:'black'}" [readonly]="false"></ckeditor>
+                </span>
+    <span class="p-float-label" [(ngModel)]="selectloai"> 
+                    <h5>Loại món ăn</h5>
+                    <select>
+                        <option *ngFor="let bp of bophan" [selected]="checklm==bp.id?true:false" [style]="{width: '55vw' , color:'black'}" value="{{bp.id}}">{{bp.tenloai}}</option>
+                    </select>
+                </span>
+    <p-footer>
+        <button pButton pRipple label="Lưu" [(ngModel)]="protocol" type="submit" (click)="luu()" icon="pi pi-check" class="p-button-rounded p-button-text"></button>
+    </p-footer>
+</p-dialog> -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thông tin mô hình</h5>
+                <button type="button" #close_mn class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="example_tmn" class="form-label">Tên mô hình</label>
+                    <input type="text" [(ngModel)]="txttenmon" class="form-control" id="example_tmn">
+                    <small id="alter_tm" style="color: red;"></small>
+                </div>
+                <label for="formFile" class="form-label">Hình ảnh</label>
+                <input class="form-control" type="file" id="formFile" (change)="changeImga($event)">
+                <small id="alter_ha" style="color: red;"></small>
+                <div class="mt-3" id="imgTest"></div>
+                <div class="mb-3">
+                    <label for="example_dv" class="form-label">Đơn vị tính</label>
+                    <input type="text" [(ngModel)]="txtdonvi" class="form-control" id="example_dv">
+                    <small id="alter_dv" style="color: red;"></small>
+                </div>
+                <div class="mb-3">
+                    <label for="example_dg" class="form-label">Đơn giá</label>
+                    <input type="text" [(ngModel)]="txtdongia" class="form-control" id="example_dg">
+                    <small id="alter_dg" style="color: red;"></small>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Nội dung</label>
+                    <ckeditor [(ngModel)]="ckeditorContent" [style]="{color:'black'}" [readonly]="false"></ckeditor>
+                </div>
+                <label for="exampleFormControlTextarea1" class="form-label">Loại mô hình</label>
+                <select class="form-select" #sel_lma aria-label="Default select example" (change)="change_lmn(sel_lma.value)">
+                    <option *ngFor="let bp of bophan" [selected]="selectloai==bp.id?true:false" [style]="{width: '55vw' , color:'black'}" value="{{bp.id}}">{{bp.tenloai}}</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" (click)="luu()">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>

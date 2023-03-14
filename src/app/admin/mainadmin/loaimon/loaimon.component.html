@@ -1,0 +1,56 @@
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Quản lý loại mô hình</h1>
+    <p class="mb-4">Quản lý loại mô hình</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-sm-8">
+                    <h6 class="m-0 font-weight-bold text-primary">Danh sách loại mô hình</h6>
+                </div>
+                <div class="col-sm-4">
+                    <span class="p-buttonset">
+                        <button pButton pRipple (click)="showDialog()" label="Thêm" icon="pi pi-plus" styleClass="p-button-sm"></button>
+                        <button pButton pRipple class="p-button-success" label="Xuất file" icon="pi pi-file-excel" styleClass="p-button-sm"></button>
+                        <button pButton pRipple class="p-button-danger" label="Xuất file" icon="pi pi-file-pdf" styleClass="p-button-sm"></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card">
+                <p-table [value]="item" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Mã loại mô hình</th>
+                            <th>Tên loại mô hình</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-item>
+                        <tr>
+                            <td>{{item.id}}</td>
+                            <td>{{item.tenloai}}</td>
+                            <td>
+                                <span class="p-buttonset">
+                                    <button pButton icon="pi pi-external-link" (click)= "showDialog()" pRipple styleClass="p-button-sm"></button>
+                                    <button pButton pRipple class="p-button-warning" icon="pi pi-trash" styleClass="p-button-sm"></button>
+                                    <button pButton pRipple class="p-button-secondary" icon="pi pi-refresh" styleClass="p-button-sm"></button>
+                                </span>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="paginatorleft">
+                        <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+                    </ng-template>
+                    <ng-template pTemplate="paginatorright">
+                        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>

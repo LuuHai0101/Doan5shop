@@ -1,0 +1,211 @@
+<header id="header" class="header style-04 header-dark">
+    <div class="header-top">
+        <div class="container">
+            <div class="header-top-inner">
+                <ul id="menu-top-left-menu" class="kobolg-nav top-bar-menu">
+                    <!-- <li id="menu-item-864" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-864"><a class="kobolg-menu-item-title" title="Store Direction" href="#" [routerLink]="['/notfound']"><span class="icon flaticon-placeholder"></span>Hướng dẫn</a></li>
+                    <li id="menu-item-865" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-865"><a class="kobolg-menu-item-title" title="Order Tracking" href="#" [routerLink]="['/giohang/theodoidonhang']"><span class="icon flaticon-box"></span>Theo dõi đơn hàng</a></li> -->
+                </ul>
+                <div class="kobolg-nav top-bar-menu right">
+                    <ul class="wpml-menu" *ngIf="itemuser==null">
+                        <li class="menu-item">
+                            <div class="wcml-dropdown product wcml_currency_switcher">
+                                <a href="javascript:void(0)" (click)="dangnhap()">Đăng nhập</a>
+                            </div>
+                        </li>
+                        <li>/</li>
+                        <li class="menu-item">
+                            <div class="wcml-dropdown product wcml_currency_switcher">
+                                <a href="#" [routerLink]="['/dangky']"> &nbsp;&nbsp;Đăng ký</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-middle">
+        <div class="container">
+            <div class="header-middle-inner">
+                <div class="header-logo-menu">
+                    <div class="block-menu-bar">
+                        <a class="menu-bar menu-toggle" href="#">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </a>
+                    </div>
+                    <div class="header-logo">
+                        <a href="#" [routerLink]="['/trangchu']"><img alt="Kobolg" src="../../../../assets/images/system/logoKing'sBBQ.png" style="width: 250px; height: 125px;" class="logo"></a>
+                    </div>
+                </div>
+                <div class="header-search-mid">
+                    <div class="header-search">
+                        <div class="block-search">
+                            <form role="search" method="get" class="form-search block-search-form kobolg-live-search-form">
+                                <div class="form-content search-box results-search">
+                                    <div class="inner">
+                                        <input autocomplete="off" #txtsearch class="searchfield txt-livesearch input" name="s" value="" placeholder="Tìm kiếm tại đây ..." type="text">
+                                    </div>
+                                </div>
+                                <input name="post_type" value="product" type="hidden">
+                                <input name="taxonomy" value="product_cat" type="hidden">
+                                <div class="category">
+                                    <select title="product_cat" #selectsearch name="product_cat" id="1771262470" class="category-search-option" tabindex="-1" style="display: none;">
+                                        <option value="0">Tất cả</option>
+                                        <ng-container *ngFor="let it of item">
+                                            <option value="{{it.id}}">{{it.tenloai}}</option>
+                                        </ng-container>                                       
+                                    </select>
+                                </div>
+                                <button type="button" (click)="search(txtsearch.value,selectsearch.value)" class="btn-submit">
+                                    <span class="flaticon-search"></span>
+                                </button>
+                            </form>
+                            <!-- block search -->
+                        </div>
+                    </div>
+                </div>
+                <div class="header-control">
+                    <div class="header-control-inner">
+                        <div class="meta-dreaming">
+                            <div class="menu-item block-user block-dreaming kobolg-dropdown">
+                                <a class="block-link" href="javascript:void(0)">
+                                    <span *ngIf="itemuser==null" class="flaticon-profile"></span>
+                                    <span *ngIf="itemuser!=null">
+                                        <img *ngIf="itemuser.idFb==null" style="border-radius: 25px; border: black 1px solid;" src="../../../../assets/images/user/{{itemuser.hinhanh}}">
+                                        <img *ngIf="itemuser.idFb!=null" style="border-radius: 25px; border: black 1px solid;" src="{{itemuser.hinhanh}}">
+                                    </span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <ng-container *ngIf="itemuser!=null">
+                                        <li class="menu-item kobolg-MyAccount-navigation-link kobolg-MyAccount-navigation-link--dashboard is-active">
+                                            <a *ngIf="itemuser.idFb==null" href="#" [routerLink]="['/taikhoan/thongtintaikhoan',itemuser.id]">Thông tin tài khoản</a>
+                                        </li>
+                                        <!-- <li class="menu-item kobolg-MyAccount-navigation-link kobolg-MyAccount-navigation-link--orders">
+                                            <a href="#" [routerLink]="['/giohang/theodoidonhang']">Theo dõi đơn hàng</a>
+                                        </li> -->
+                                        <li class="menu-item kobolg-MyAccount-navigation-link kobolg-MyAccount-navigation-link--orders">
+                                            <a *ngIf="itemuser.idFb==null" href="#" [routerLink]="['/taikhoan/thaydoimatkhau',itemuser.id]">Thay đổi mật khẩu</a>
+                                        </li>
+                                        <li class="menu-item kobolg-MyAccount-navigation-link kobolg-MyAccount-navigation-link--customer-logout">
+                                            <a href="javascript:void(0)" (click)="dangxuat()">Đăng xuất</a>
+                                        </li>
+                                    </ng-container>
+                                    <ng-container *ngIf="itemuser==null">
+                                        <li class="menu-item kobolg-MyAccount-navigation-link kobolg-MyAccount-navigation-link--dashboard is-active">
+                                            <a href="javascript:void(0)">Xin chào người lạ</a>
+                                        </li>
+                                    </ng-container>
+                                </ul>
+                            </div>
+                            <div class="block-minicart block-dreaming kobolg-mini-cart kobolg-dropdown">
+                                <div class="shopcart-dropdown block-cart-link" data-kobolg="kobolg-dropdown">
+                                    <a class="block-link link-dropdown" href="cart.html">
+                                        <span class="flaticon-online-shopping-cart"></span>
+                                        <span class="count">{{total}}</span>
+                                    </a>
+                                </div>
+                                <div class="widget kobolg widget_shopping_cart">
+                                    <div class="widget_shopping_cart_content">
+                                        <h3 class="minicart-title">Giỏ hàng<span class="minicart-number-items">{{total}}</span>
+                                        </h3>
+                                        <ul class="kobolg-mini-cart cart_list product_list_widget">
+                                            <ng-container *ngFor="let sp of itemcar">
+                                                <li class="kobolg-mini-cart-item mini_cart_item">
+                                                    <a href="javascript:void(0)" (click)="deleteitem(sp.id)" class="remove remove_from_cart_button">×</a>
+                                                    <a href="#">
+                                                        <img src="../../../../assets/images/product/{{sp.hinhanh}}" class="attachment-kobolg_thumbnail size-kobolg_thumbnail" alt="img" width="600" height="778">{{sp.tenmon}}&nbsp;
+                                                    </a>
+                                                    <span class="quantity">{{sp.soluong}} × <span
+                                                            class="kobolg-Price-amount amount"><span
+                                                            class="kobolg-Price-currencySymbol"></span>{{sp.gia.toLocaleString('vi', {style : 'currency', currency : 'VND'})}}</span>
+                                                    </span>
+                                                </li>
+                                            </ng-container>
+                                        </ul>
+                                        <p class="kobolg-mini-cart__total total"><strong>Tổng tiền:</strong>
+                                            <span class="kobolg-Price-amount amount"><span
+                                                    class="kobolg-Price-currencySymbol"></span>{{totalprice.toLocaleString('vi', {style : 'currency', currency : 'VND'})}}</span>
+                                        </p>
+                                        <p class="kobolg-mini-cart__buttons buttons">
+                                            <a href="#" [routerLink]="['/giohang']" class="button kobolg-forward">Giỏ hàng</a>
+                                            <a href="#" [routerLink]="['/giohang/dathang']" class="button checkout kobolg-forward">Đặt hàng</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-wrap-stick">
+        <div class="header-position">
+            <div class="header-nav">
+                <div class="container">
+                    <div class="kobolg-menu-wapper"></div>
+                    <div class="header-nav-inner">
+                        <div data-items="8" class="vertical-wrapper block-nav-category has-vertical-menu show-button-all">
+                            <div class="block-title">
+                                <!-- <span class="before">
+                        <span></span>
+                                <span></span>
+                                <span></span>
+                                </span> -->
+                                <!-- <span class="text-title">Danh mục mô hình</span> -->
+                            </div>
+                            <div class="block-content verticalmenu-content">
+                                <ul id="menu-vertical-menu" class="azeroth-nav vertical-menu default">
+                                    <ng-container *ngFor="let it of item">
+                                        <li id="menu-item-886" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-886">
+                                            <a class="azeroth-menu-item-title" title="{{it.tenloai}}" href="#" [routerLink]="['/mohinh',it.id]">
+                                                <img src="" />{{it.tenloai}}
+                                            </a>
+                                        </li>
+                                    </ng-container>
+                                </ul>
+                                <div class="view-all-category">
+                                    <a href="#" data-closetext="Close" data-alltext="All Categories" class="btn-view-all open-cate">All Categories</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- block category -->
+                        <div class="box-header-nav menu-nocenter">
+                            <ul id="menu-primary-menu" class="clone-main-menu kobolg-clone-mobile-menu kobolg-nav main-menu">
+                                <li id="menu-item-230" class="menu-item menu-item-type-post_type menu-item-object-megamenu menu-item-230 parent parent-megamenu item-megamenu menu-item-has-children">
+                                    <a href="#" routerLink="/trangchu" class="kobolg-menu-item-title" title="Trang chủ">Trang chủ</a>
+                                </li>
+                                <li id="menu-item-237" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-237 parent">
+                                    <a class="kobolg-menu-item-title" title="Pages" href="#">Mô hình</a>
+                                    <span class="toggle-submenu"></span>
+                                    <ul role="menu" class="submenu">
+                                        <ng-container *ngFor="let it of item">
+                                            <li id="menu-item-987" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-987">
+                                                <a class="kobolg-menu-item-title" title="{{it.tenloai}}" href="#" [routerLink]="['/mohinh/',it.id]">{{it.tenloai}}</a></li>
+                                        </ng-container>
+                                    </ul>
+                                </li>
+                                <li id="menu-item-229" class="menu-item menu-item-type-post_type menu-item-object-megamenu menu-item-229 parent parent-megamenu item-megamenu menu-item-has-children">
+                                    <a class="kobolg-menu-item-title" title="Giới thiệu" href="#" [routerLink]="['/notfound']">Tin tức</a>
+                                    <!-- <span class="toggle-submenu"></span> -->
+                                </li>
+                                <li id="menu-item-229" class="menu-item menu-item-type-post_type menu-item-object-megamenu menu-item-229 parent parent-megamenu item-megamenu menu-item-has-children">
+                                    <a class="kobolg-menu-item-title" title="Giới thiệu" href="#" [routerLink]="['/notfound']">Giới thiệu</a>
+                                    <!-- <span class="toggle-submenu"></span> -->
+                                </li>
+                                <li id="menu-item-237" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-237 parent">
+                                    <a class="kobolg-menu-item-title" title="Pages" href="#" [routerLink]="['/notfound']">Liên hệ</a>
+                                </li>
+                                <li id="menu-item-238" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-238">
+                                    <!-- <a class="kobolg-menu-item-title" title="Free Shipping on Orders $100">Miễn phí ship trong nội thành</a> -->
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,102 @@
+<div class="banner-wrapper has_background">
+    <img src="assets/images/banner-for-all2.jpg" class="img-responsive attachment-1920x447 size-1920x447" alt="img">
+    <div class="banner-wrapper-inner">
+        <h1 class="page-title container">Theo dõi đơn hàng</h1>
+        <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs container">
+            <ul class="trail-items breadcrumb">
+                <li class="trail-item trail-begin"><a href="#" [routerLink]="['/trangchu']"><span>Trang chủ</span></a></li>
+                <li class="trail-item trail-end active"><span>Theo dõi đơn hàng</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<main class="site-main main-container no-sidebar">
+    <div class="container" *ngIf="item.length !=0">
+        <!--Accordion wrapper-->
+        <div *ngFor="let i of item" class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+
+            <!-- Accordion card -->
+            <div class="card">
+
+                <!-- Card header -->
+                <div class="card-header" role="tab" id="headingTwo2">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo{{i.id}}" aria-expanded="false" aria-controls="collapseTwo2">
+                        <h5 class="mb-0 row">
+                            <div class="col-11">Đơn hàng {{i.id}}</div>
+                            <div class="col-1"><i class="fas fa-angle-down rotate-icon"></i></div>
+                        </h5>
+                    </a>
+                </div>
+
+                <!-- Card body -->
+                <div id="collapseTwo{{i.id}}" class="collapse" role="tabpanel" aria-labelledby="headingTwo2" data-parent="#accordionEx">
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Tên khách</th>
+                                    <th scope="col">Tình trạng</th>
+                                    <th scope="col">SĐT</th>
+                                    <th scope="col">Địa chỉ giao</th>
+                                    <th scope="col">Tổng tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">{{i.tenkhach}}</th>
+                                    <td *ngIf="i.tinhtrang == 0">
+                                        Đang đợi xác nhận
+                                    </td>
+                                    <td *ngIf=" i.tinhtrang == 1">
+                                        Đang ở trạng thái đợi
+                                    </td>
+
+                                    <td *ngIf="i.tinhtrang == 2">
+                                        Đơn hàng đang giao xác nhận khi nhận được hàng
+                                        <button (click)="changestate(i.id)">Xác nhận</button>
+                                    </td>
+                                    <td *ngIf="i.tinhtrang == 3">
+                                        Đã giao
+                                    </td>
+                                    <td>{{i.sdtgiao}}</td>
+                                    <td>{{i.diachigiao}}</td>
+                                    <td>{{i.tongtien}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5 class="text-center ">Chi tiết đơn hàng</h5>
+                    <div class="card-body ">
+                        <table class="table ">
+                            <thead>
+                                <tr>
+                                    <th scope="col ">Hình ảnh</th>
+                                    <th scope="col ">Tên sản phẩm</th>
+                                    <th scope="col ">Số lượng</th>
+                                    <th scope="col ">Giá</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let it of i.ctdhs ">
+                                    <th scope="row "><img src="../../../../../assets/images/product/{{it.hinhanh}} " style="width: 50px; height: 50px; "></th>
+                                    <td>{{it.tenmon}}</td>
+                                    <td>{{it.soluong}}</td>
+                                    <td>{{it.gia}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Accordion card -->
+
+        </div>
+        <!-- Accordion wrapper -->
+    </div>
+    <div class="container " *ngIf="item.length==0 ">
+        <div class="text-center ">
+            <h5>Đơn hàng rỗng</h5>
+        </div>
+    </div>
+</main>

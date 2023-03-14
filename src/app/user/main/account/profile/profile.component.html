@@ -1,0 +1,90 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 user-details">
+            <div class="user-image mx-auto">
+                <label>
+                    <div style="position: relative; cursor: pointer;">
+                        <img src="../../../../../assets/images/user/{{user_profile.hinhanh}}" style="width: 150px; height: 150px; border-radius: 75px; border: .5px solid black;" alt="Karan Singh Sisodia" title="{{user_profile.hoten}}" class="img-circle">
+                        <div style="position: absolute; bottom: 6px; left: 15px; height: 35px; width: 120px; font-size: 14px; font-weight: bold; background-color: rgba(0,0,0,.5); border-bottom-left-radius: 75px; border-bottom-right-radius: 75px; border-top: .5px solid rgba(0,0,0,.6); line-height: 30px; text-align: center; color: #ffffff;">Upload ảnh</div>
+                    </div>
+                    <input type="file" style="display: none;" accept="image/*" (change)="change_img($event)">
+                </label>
+            </div>
+            <div class="user-info-block" style="width: 100%;">
+                <div class="user-heading">
+                    <h3>{{user_profile.hoten}}</h3>
+                    <span class="help-block">{{user_profile.diachi}}</span>
+                </div>
+                <ul class="navigation mx-auto">
+                    <li (click)="click_profile= !click_profile" [ngClass]="{'active':click_profile==true?true:false}">
+                        <a data-toggle="tab" [ngStyle]="{'cursor':click_profile==false?'pointer':'default'}" (click)="click_profile!=click_profile">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li (click)="click_profile= !click_profile" [ngClass]="{'active':click_profile==false?true:false}">
+                        <a data-toggle="tab" href="javascript:void(0)" [ngStyle]="{'cursor':click_profile==true?'pointer':'default'}" (click)="click_profile!=click_profile">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="mt-2">
+                    <div>
+                        <div id="information" [ngStyle]="{'display':click_profile == true?'block':'none'}">
+                            <h4 class="text-center text-uppercase">Thông tin cơ bản</h4>
+                            <div align="center">
+                                <div align="left" style="width: 450px;">
+                                    <p><i class="fa fa-address-card" aria-hidden="true"></i> {{user_profile.hoten}}</p>
+                                    <p><i class="fa fa-calendar" aria-hidden="true"></i> {{user_profile.ngaysinh | date: 'dd/MM/yyyy'}}</p>
+                                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{user_profile.diachi}}</p>
+                                    <p><i class="fa fa-envelope" aria-hidden="true"></i> {{user_profile.email}}</p>
+                                    <p><i class="fa fa-phone" aria-hidden="true"></i> {{user_profile.sdt}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="settings" [ngStyle]="{'display':click_profile == true?'none':'block'}">
+                            <h4 class="text-center text-uppercase">Chỉnh sửa thông tin</h4>
+                            <div align="center">
+                                <div align="left" style="width: 450px;">
+                                    <form [formGroup]="form_changeI" (ngSubmit)="change_information()">
+                                        <div class="form-group">
+                                            <label for="example_ht">Họ tên</label>
+                                            <input formControlName="txt_ht" type="text" class="form-control" id="example_ht" value="{{user_profile.hoten}}">
+                                            <div *ngIf="form_changeI.controls.txt_ht.errors && on_submit">
+                                                <small style="color: red;" *ngIf="form_changeI.controls.txt_ht.errors.required" id="alert_ht" class="form-text text-muted">Không để họ tên trống</small>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="example_ht">Ngày sinh</label>
+                                            <input formControlName="txt_ns" type="date" class="form-control" id="example_ns" value="{{user_profile.ngaysinh | date: 'yyyy-MM-dd'}}">
+                                            <div *ngIf="form_changeI.controls.txt_ns.errors && on_submit">
+                                                <small style="color: red;" *ngIf="form_changeI.controls.txt_ns.errors.required" id="alert_ns" class="form-text text-muted">Không để ngày sinh trống</small>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="example_ht">Địa chỉ</label>
+                                            <input formControlName="txt_dc" type="text" class="form-control" id="example_dt" value="{{user_profile.diachi}}">
+                                            <div *ngIf="form_changeI.controls.txt_dc.errors && on_submit">
+                                                <small style="color: red;" *ngIf="form_changeI.controls.txt_dc.errors.required" id="alert_dt" class="form-text text-muted">Không để địa chỉ trống</small>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="example_ht">Số điện thoại</label>
+                                            <input formControlName="txt_sdt" type="text" class="form-control" id="example_sdt" value="{{user_profile.sdt}}" #sdt_txt (change)="change_sdt_(sdt_txt.value)">
+                                            <div *ngIf="form_changeI.controls.txt_sdt.errors && on_submit">
+                                                <small style="color: red;" *ngIf="form_changeI.controls.txt_sdt.errors.required" id="alert_sdt" class="form-text text-muted">Không để số điện thoại trống</small>
+                                            </div>
+                                            <div>
+                                                <small style="color: red;" id="alert_sdt_2" class="form-text text-muted"></small>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Thay đổi thông tin</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

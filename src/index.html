@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Chrom</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="assets//images/system/farvicon.png" /> -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/chosen.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.scrollbar.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/lightbox.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/slick.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/fonts/flaticon.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/megamenu.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/dreaming-attribute.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+
+    <!-- <script src="assets/admin/vendor/jquery/jquery.min.js"></script> -->
+    <script src="assets/js/jquery-1.12.4.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/chosen.min.js"></script>
+    <script src="assets/js/countdown.min.js"></script>
+    <script src="assets/js/jquery.scrollbar.min.js"></script>
+    <script src="assets/js/lightbox.min.js"></script>
+    <script src="assets/js/magnific-popup.min.js"></script>
+    <script src="assets/js/slick.js"></script>
+    <script src="assets/js/jquery.zoom.min.js"></script>
+    <script src="assets/js/threesixty.min.js"></script>
+    <script src="assets/js/jquery-ui.min.js"></script>
+    <script src="assets/js/mobilemenu.js"></script>
+    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC3nDHy1dARR-Pa_2jjPCjvsOR4bcILYsM'></script>
+    <script src="assets/js/functions.js"></script>
+
+    <!-- amdin -->
+    <!-- <link href="assets/admin/css/sb-admin-2.min.css" rel="stylesheet"> -->
+    <link href="assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <script src="assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="assets/admin/js/sb-admin-2.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.14.1/full/ckeditor.js"></script>
+</head>
+
+<body>
+    <app-root></app-root>
+</body>
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId: '{your-app-id}',
+            cookie: true,
+            xfbml: true,
+            version: '{api-version}'
+        });
+
+        FB.AppEvents.logPageView();
+
+    };
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
+</html>

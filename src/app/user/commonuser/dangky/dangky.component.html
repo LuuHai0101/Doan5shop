@@ -1,0 +1,85 @@
+<div class="card bg-light" style="box-shadow: 1px 2px 2px rgba(0, 0, 0, alpha);">
+    <article class="card-body mx-auto" style="max-width: 400px;">
+        <h4 class="card-title mt-3 text-center">Tạo tài khoản</h4>
+        <p class="text-center">Bắt đầu với tài khoản miễn phí của bạn</p>
+        <form [formGroup]="form_dangky" (ngSubmit)="dangky_()">
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                </div>
+                <input formControlName="txthoten" name="" class="form-control" placeholder="Họ tên" type="text" style="width: 300px;">
+                <div style="display: block;" *ngIf="submit_on&&form_dangky.controls.txthoten.errors">
+                    <span *ngIf="form_dangky.controls.txthoten.errors.required" style="color: red;">Không để họ tên rỗng</span>
+                </div>
+            </div>
+            <!-- form-group// -->
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                </div>
+                <input formControlName="txtEmail" name="" class="form-control" placeholder="Email" type="email" style="width: 300px;">
+                <div>
+                    <div *ngIf="submit_on&&form_dangky.controls.txtEmail.errors">
+                        <span *ngIf="form_dangky.controls.txtEmail.errors.required" style="color: red;">Không để email rỗng</span>
+                    </div>
+                </div>
+            </div>
+            <!-- form-group// -->
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                </div>
+                <input formControlName="txtPlace" class="form-control" placeholder="Địa chỉ" type="text" style="width: 300px;">
+                <br>
+                <div *ngIf="submit_on&&form_dangky.controls.txtPlace.errors">
+                    <span *ngIf="form_dangky.controls.txtPlace.errors.required" style="color: red;">Không để địa chỉ rỗng</span>
+                </div>
+            </div>
+            <!-- form-group// -->
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                </div>
+                <input formControlName="txtPhone" #phone_txt class="form-control" (keyup)="keyup_sdt(phone_txt.value)" placeholder="Số điện thoại" type="text" style="width: 300px;">
+                <br>
+                <div *ngIf="submit_on&&form_dangky.controls.txtPhone.errors">
+                    <span *ngIf="form_dangky.controls.txtPhone.errors.required" style="color: red;">Không để số điện thoại rỗng</span>
+                </div>
+                <div id="alter_sdt" style="color: red;"></div>
+            </div>
+            <!-- form-group end.// -->
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                <div style="position: relative;">
+                    <input id="input_mk" #pass_txt formControlName="txtPass" (keyup)="keyup_nlmk(pass_txt.value, replaypass_txt.value)" class="form-control" placeholder="Mật khẩu" type="password" style="width: 280px;">
+                    <span id="mk_" (click)="display_mk()" style="position: absolute; top: 5px; right: -25px; cursor: pointer;">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </span>
+                </div><br>
+                <div *ngIf="submit_on&&form_dangky.controls.txtPass.errors">
+                    <span *ngIf="form_dangky.controls.txtPass.errors.required" style="color: red;">Không để mật khẩu rỗng</span>
+                </div>
+            </div>
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                <div>
+                    <input (keyup)="keyup_nlmk(pass_txt.value, replaypass_txt.value)" formControlName="txtReplayPass" #replaypass_txt class="form-control" placeholder="Nhập lại mật khẩu" type="password" style="width: 300px;">
+                </div>
+                <div *ngIf="submit_on&&form_dangky.controls.txtReplayPass.errors">
+                    <span *ngIf="form_dangky.controls.txtReplayPass.errors.required" style="color: red;">Nhập lại mật khẩu rỗng</span>
+                </div><br>
+                <div id="alter_nlmk" style="color: red;"></div>
+            </div>
+            <!-- form-group// -->
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block"> Tạo tài khoản </button>
+            </div>
+            <!-- form-group// -->
+            <p class="text-center">Bạn đã có tài khoản? <a href="#" [routerLink]="['/dangnhap']">Đăng nhập</a> </p>
+        </form>
+    </article>
+</div>

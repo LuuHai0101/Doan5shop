@@ -1,0 +1,203 @@
+<!-- <p-toast></p-toast> -->
+<div class="main-container shop-page right-sidebar">
+    <div class="container">
+        <div class="row">
+            <div class="main-content col-xl-9 col-lg-8 col-md-8 col-sm-12 has-sidebar">
+                <div class="shop-control shop-before-control">
+                    <div class="grid-view-mode">
+                        <form>
+                            <a href="javascrpit:void(0)" (click)="changegrid()" data-toggle="tooltip" data-placement="top" class="modes-mode mode-grid display-mode " [ngClass]="{'active':grid}" value="grid">
+                                <span class="button-inner">
+                                    Dạng lưới
+                                    <span></span>
+                                <span></span>
+                                <span></span>
+                                </span>
+                            </a>
+                            <!-- <a href="javascrpit:void(0)" (click)="changegrid()" data-toggle="tooltip" data-placement="top" class="modes-mode mode-list display-mode" [ngClass]="{'active':!grid}" value="list">
+                                <span class="button-inner">
+                                    Dạng danh sách
+                                    <span></span>
+                                <span></span>
+                                <span></span>
+                                </span>
+                            </a> -->
+                        </form>
+                    </div>
+                    <!-- <form class="kobolg-ordering" method="get">
+                        <select title="product_cat" name="orderby" class="orderby" #selectorder (change)="changeorder(selectorder.value)">
+                            <option value="1" selected="selected">Mặc định</option>
+                            <option value="2">Sắp xếp theo tên</option>
+                            <option value="3">Sắp xếp theo đánh giá</option>
+                            <option value="4">Sắp xếp theo mới nhất</option>
+                            <option value="5">Sắp xếp theo giá: thấp đến cao</option>
+                            <option value="6">Sắp xếp theo giá: cao đến thấp</option>
+                        </select>
+                    </form> -->
+                    <!-- <form class="per-page-form">
+                        <label>
+                            <select class="option-perpage" #selectsize (change)="changesize(selectsize.value)">
+                                <option value="6" selected="selected">
+                                    Hiển thị 06
+                                </option>
+                                <option value="9">
+                                    Hiển thị 09
+                                </option>
+                                <option value="12">
+                                    Hiển thị 12
+                                </option>
+                            </select>
+                        </label>
+                    </form> -->
+                </div>
+                <div class=" auto-clear equal-container better-height kobolg-products">
+                    <ul class="row products columns-3">
+                        <ng-container *ngIf="item.length >0">
+                            <ng-container *ngIf="grid">
+                                <ng-container *ngFor="let it of item">
+                                    <li class="product-item wow fadeInUp product-item list col-md-12 post-28 product type-product status-publish has-post-thumbnail product_cat-light product_cat-chair product_cat-sofas product_tag-light product_tag-sock  instock sale featured shipping-taxable purchasable product-type-simple"
+                                        data-wow-duration="1s" data-wow-delay="0ms" data-wow="fadeInUp">
+                                        <div class="product-inner images">
+                                            <div class="product-thumb">
+                                                <a class="thumb-link" href="#" [routerLink]="['/sanpham',it.id]">
+                                                    <img class="img-responsive" src="../../../../..//assets/images/product/{{it.hinhanh}}" alt="{{it.tenmon}}" style="width: 248px; height: 168px;" width="600" height="778">
+                                                </a>
+                                                <div class="flash">
+                                                    <span class="onnew"><span class="text">New</span></span>
+                                                </div>
+                                                <a href="#" class="button yith-wcqv-button" [routerLink]="['/sanpham',it.id]" data-product_id="28">Xem chi tiết</a>
+                                            </div>
+                                            <div class="product-info">
+                                                <div class="rating-wapper ">
+                                                    <!-- <div class="star-rating"><span style="width:100%">Đánh giá <strong class="rating">5.00</strong> out of 5</span>
+                                                    </div> -->
+                                                    <div class="rating" style="display: flex;">
+                                                        <i class="fa fa-star-half" aria-hidden="true" [ngStyle]="{'color':it.rate>0&&it.rate<=0.5?'orange':'','display':it.rate>0&&it.rate<=0.5?'block':'none'}"></i>
+                                                        <i class="fa fa-star" aria-hidden="true" [ngStyle]="{'color':it.rate>0.5?'orange':'','display':it.rate>0.5 || it.rate ==0 || (it.rate < 1 && !(it.rate>0&&it.rate<=0.5))?'block':'none'}"></i>
+                                                        <i class="fa fa-star-half" aria-hidden="true" [ngStyle]="{'color':it.rate>1&&it.rate<=1.5?'orange':'','display':it.rate>1&&it.rate<=1.5?'block':'none'}"></i>
+                                                        <i class="fa fa-star" aria-hidden="true" [ngStyle]="{'color':it.rate>1.5?'orange':'','display':it.rate>1.5 || it.rate ==0 || (it.rate < 2 &&!(it.rate>1&&it.rate<=1.5))?'block':'none'}"></i>
+                                                        <i class="fa fa-star-half" aria-hidden="true" [ngStyle]="{'color':it.rate>2&&it.rate<=2.5?'orange':'','display':it.rate>2&&it.rate<=2.5?'block':'none'}"></i>
+                                                        <i class="fa fa-star" aria-hidden="true" [ngStyle]="{'color':it.rate>2.5?'orange':'','display':it.rate>2.5 || it.rate ==0 || (it.rate < 3 && !(it.rate>2&&it.rate<=2.5))?'block':'none'}"></i>
+                                                        <i class="fa fa-star-half" aria-hidden="true" [ngStyle]="{'color':it.rate>3&&it.rate<=3.5?'orange':'','display':it.rate>3&&it.rate<=3.5?'block':'none'}"></i>
+                                                        <i class="fa fa-star" aria-hidden="true" [ngStyle]="{'color':it.rate>3.5?'orange':'','display':it.rate>3.5 || it.rate ==0 || (it.rate < 4 && !(it.rate>3&&it.rate<=3.5))?'block':'none'}"></i>
+                                                        <i class="fa fa-star-half-o" aria-hidden="true" [ngStyle]="{'color':it.rate>4&&it.rate<=4.5?'orange':'','display':it.rate>4&&it.rate<=4.5?'block':'none'}"></i>
+                                                        <i class="fa fa-star" aria-hidden="true" [ngStyle]="{'color':it.rate>4.5?'orange':'','display':it.rate>4.5 || it.rate ==0|| (it.rate < 5 && !(it.rate>4&&it.rate<=4.5))?'block':'none'}"></i>
+                                                    </div>
+                                                    <span class="review">(1)</span></div>
+                                                <h3 class="product-name product_title">
+                                                    <a href="#" [routerLink]="['/sanpham',it.id]">{{it.tenmon}}</a>
+                                                </h3>
+                                                <span class="price"> <ins><span
+                                                class="kobolg-Price-amount amount"><span
+                                                class="kobolg-Price-currencySymbol"></span>{{it.gia | currency: "VND":false }}</span>
+                                                </ins>
+                                                </span>
+                                            </div>
+                                            <div class="group-button">
+                                                <div class="group-button-inner">
+                                                    <div class="add-to-cart">
+                                                        <a href="javascript:void(0)" (click)="addcart(it)" class="button product_type_simple add_to_cart_button ajax_add_to_cart">Thêm giỏ hàng</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ng-container>
+                            </ng-container>
+                            <ng-container *ngIf="!grid">
+                                <ng-container *ngFor="let it of item">
+                                    <li class="product-item wow fadeInUp product-item rows-space-30 col-bg-4 col-xl-4 col-lg-6 col-md-6 col-sm-6 col-ts-6 style-01 post-28 product type-product status-publish has-post-thumbnail product_cat-light product_cat-chair product_cat-sofas product_tag-light product_tag-sock  instock sale featured shipping-taxable purchasable product-type-simple"
+                                        data-wow-duration="1s" data-wow-delay="0ms" data-wow="fadeInUp">
+                                        <div class="product-inner tooltip-left">
+                                            <div class="product-thumb">
+                                                <a class="thumb-link" href="#" [routerLink]="['/sanpham',it.id]">
+                                                    <img class="img-responsive" src="../../../../../assets/images/product/{{it.hinhanh}}" alt="{{it.tenmon}}" style="width: 266px; height: 177px;" width="600" height="778">
+                                                </a>
+                                                <div class="flash">
+                                                    <span class="onnew"><span class="text">New</span></span>
+                                                </div>
+                                                <div class="group-button">
+                                                    <a href="#" class="button yith-wcqv-button" [routerLink]="['/sanpham',it.id]">Xem chi tiết</a>
+                                                    <div class="add-to-cart">
+                                                        <a href="javascript:void(0)" (click)="addcart(it)" class="button product_type_simple add_to_cart_button">Thêm giỏ hàng</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-info equal-elem">
+                                                <h3 class="product-name product_title">
+                                                    <a href="#" [routerLink]="['/sanpham',it.id]">{{it.tenmon}}</a>
+                                                </h3>
+                                                <div class="rating-wapper">
+                                                    <!-- <div class="star-rating"><span style="width:100%">Bình chọn <strong class="rating">5.00</strong> out of 5</span>
+                                                    </div> -->
+                                                    <div class="rating" style="display: flex;">
+                                                        <i class="fa fa-star-half" aria-hidden="true" [ngStyle]="{'color':it.rate>0&&it.rate<=0.5?'orange':'','display':it.rate>0&&it.rate<=0.5?'block':'none'}"></i>
+                                                        <i class="fa fa-star" aria-hidden="true" [ngStyle]="{'color':it.rate>0.5?'orange':'','display':it.rate>0.5 || it.rate ==0 || (it.rate < 1 && !(it.rate>0&&it.rate<=0.5))?'block':'none'}"></i>
+                                                        <i class="fa fa-star-half" aria-hidden="true" [ngStyle]="{'color':it.rate>1&&it.rate<=1.5?'orange':'','display':it.rate>1&&it.rate<=1.5?'block':'none'}"></i>
+                                                        <i class="fa fa-star" aria-hidden="true" [ngStyle]="{'color':it.rate>1.5?'orange':'','display':it.rate>1.5 || it.rate ==0 || (it.rate < 2 &&!(it.rate>1&&it.rate<=1.5))?'block':'none'}"></i>
+                                                        <i class="fa fa-star-half" aria-hidden="true" [ngStyle]="{'color':it.rate>2&&it.rate<=2.5?'orange':'','display':it.rate>2&&it.rate<=2.5?'block':'none'}"></i>
+                                                        <i class="fa fa-star" aria-hidden="true" [ngStyle]="{'color':it.rate>2.5?'orange':'','display':it.rate>2.5 || it.rate ==0 || (it.rate < 3 && !(it.rate>2&&it.rate<=2.5))?'block':'none'}"></i>
+                                                        <i class="fa fa-star-half" aria-hidden="true" [ngStyle]="{'color':it.rate>3&&it.rate<=3.5?'orange':'','display':it.rate>3&&it.rate<=3.5?'block':'none'}"></i>
+                                                        <i class="fa fa-star" aria-hidden="true" [ngStyle]="{'color':it.rate>3.5?'orange':'','display':it.rate>3.5 || it.rate ==0 || (it.rate < 4 && !(it.rate>3&&it.rate<=3.5))?'block':'none'}"></i>
+                                                        <i class="fa fa-star-half-o" aria-hidden="true" [ngStyle]="{'color':it.rate>4&&it.rate<=4.5?'orange':'','display':it.rate>4&&it.rate<=4.5?'block':'none'}"></i>
+                                                        <i class="fa fa-star" aria-hidden="true" [ngStyle]="{'color':it.rate>4.5?'orange':'','display':it.rate>4.5 || it.rate ==0|| (it.rate < 5 && !(it.rate>4&&it.rate<=4.5))?'block':'none'}"></i>
+                                                    </div>
+                                                    <span class="review">(1)</span></div>
+                                                <span class="price"><ins><span
+                                                class="kobolg-Price-amount amount"><span
+                                                class="kobolg-Price-currencySymbol"></span>{{it.gia | currency: "VND":false }}</span>
+                                                </ins>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ng-container>
+                            </ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="item.length == 0">
+                            <div style="text-align: center;">Không có mô hình nào phù hợp tìm kiếm</div>
+                        </ng-container>
+                    </ul>
+                </div>
+                <div class="shop-control shop-after-control" *ngIf="item.length >0">
+                    <nav class="kobolg-pagination" *ngIf="total/pageSize>1?true:false">
+                        <a class="prev page-numbers" href="javascript:void(0)" (click)="clickpaginationprev()" *ngIf="pageIndex==1?false:true">Prev</a>
+                        <!-- <a href="pageIndex==1?true:false" class="page-numbers current">1</a> -->
+                        <ng-container *ngFor="let i of createRange(pageend)">
+                            <a href="javascript:void(0)" class="page-numbers current" #index (click)="clickpagination(i)" *ngIf="i==pageIndex?false:true">{{i}}</a>
+                            <span class="page-numbers current" *ngIf="i==pageIndex?true:false">{{i}}</span>
+                        </ng-container>
+                        <a class="next page-numbers" href="javascript:void(0)" (click)="clickpaginationnext()" *ngIf="pageIndex==pageend?false:true">Next</a>
+                    </nav>
+                    <p class="kobolg-result-count">Hiển thị {{pageSize*(pageIndex-1)+1}}–{{pageSize*(pageIndex-1)+pageSize
+                        < total?pageSize*(pageIndex-1)+pageSize:total}} của {{total}} kết quả</p>
+                </div>
+            </div>
+            <div class="sidebar col-xl-3 col-lg-4 col-md-4 col-sm-12">
+                <div id="widget-area" class="widget-area shop-sidebar">
+                    <!-- <div id="kobolg_product_search-2" class="widget kobolg widget_product_search">
+                        <form class="kobolg-product-search">
+                            <input id="kobolg-product-search-field-0" class="search-field" #search placeholder="Tìm kiếm món ăn" value="{{txtseach}}" name="s" type="search">
+                            <button type="button" (click)="(search(search.value))">Tìm kiếm</button>
+                        </form>
+                    </div> -->
+                    <!-- <div id="kobolg_price_filter-2" class="widget kobolg widget_price_filter">
+                        <h2 class="widgettitle">Tìm kiếm giá<span class="arrow"></span></h2>
+                        <form method="get" action="#">
+                            <div class="price_slider_wrapper">
+                                <div data-label-reasult="Range:" data-min="0" data-max="1000" data-unit="$" class="price_slider" data-value-min="100" data-value-max="800">
+                                </div>
+                                <div class="price_slider_amount">
+                                    <button type="submit" class="button">Tìm kiếm</button>
+                                    <div class="price_label">
+                                        Giá: <span class="from">100kđ</span> — <span class="to">800kđ</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div> -->
+                </div>
+                <!-- .widget-area -->
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+<p-toast></p-toast>
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Quản lý đơn hàng</h1>
+    <p class="mb-4">Quản lý đơn hàng </p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-sm-8">
+                    <h6 class="m-0 font-weight-bold text-primary">Danh sách đơn hàng
+                        <span *ngIf="tinhtrang==0"> chưa xác nhận</span>
+                        <span *ngIf="tinhtrang==1"> xác nhận</span>
+                        <span *ngIf="tinhtrang==2"> đang giao</span>
+                        <span *ngIf="tinhtrang==3"> đã nhận</span>
+                    </h6>
+                </div>
+                <!-- <div class="col-sm-4">
+                    <span class="p-buttonset">
+                        <button pButton pRipple data-toggle="modal" data-target="#exampleModal" (click)="showDialog()" label="Thêm" icon="pi pi-plus" styleClass="p-button-sm"></button>
+                        <button pButton pRipple class="p-button-success" label="Xuất file" icon="pi pi-file-excel" styleClass="p-button-sm"></button>
+                        <button pButton pRipple class="p-button-danger" label="Xuất file" icon="pi pi-file-pdf" styleClass="p-button-sm"></button>
+                    </span>
+                </div> -->
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="container" *ngIf="item.length !=0">
+                <!--Accordion wrapper-->
+                <div *ngFor="let i of item" class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+
+                    <!-- Accordion card -->
+                    <div class="card">
+
+                        <!-- Card header -->
+                        <div class="card-header" role="tab" id="headingTwo2">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo{{i.id}}" aria-expanded="false" aria-controls="collapseTwo2">
+                                <h5 class="mb-0 row">
+                                    <div class="col-11">Đơn hàng {{i.id}}</div>
+                                    <div class="col-1"><i class="fas fa-angle-down rotate-icon"></i></div>
+                                </h5>
+                            </a>
+                        </div>
+
+                        <!-- Card body -->
+                        <div id="collapseTwo{{i.id}}" class="collapse" role="tabpanel" aria-labelledby="headingTwo2" data-parent="#accordionEx">
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Tên khách</th>
+                                            <th scope="col">Tình trạng</th>
+                                            <th scope="col">SĐT</th>
+                                            <th scope="col">Địa chỉ giao</th>
+                                            <th scope="col">Tổng tiền</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">{{i.tenkhach}}</th>
+                                            <td *ngIf="i.tinhtrang == 0">
+                                                <button class="btn btn-primary" (click)="changestate(i.id)">Xác nhận</button>
+                                            </td>
+                                            <td *ngIf="i.tinhtrang == 1">
+                                                <button class="btn btn-primary" (click)="changestate(i.id)">Giao hàng</button>
+                                                <button class="btn btn-primary" (click)="print_bill_2(i.id,i.tenkhach)"><i class="fa fa-print" aria-hidden="true"></i></button>
+                                            </td>
+                                            <td *ngIf="i.tinhtrang == 2">
+                                                Đơn hàng đang giao chờ xác nhận
+                                            </td>
+                                            <td *ngIf="i.tinhtrang == 3">
+                                                Đã giao
+                                            </td>
+                                            <td>{{i.sdtgiao}}</td>
+                                            <td>{{i.diachigiao}}</td>
+                                            <td>{{i.tongtien}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <h5 class="text-center">Chi tiết đơn hàng</h5>
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Hình ảnh</th>
+                                            <th scope="col">Tên sản phẩm</th>
+                                            <th scope="col">Số lượng</th>
+                                            <th scope="col">Giá</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let it of i.ctdhs">
+                                            <th scope="row"><img src="../../../../../assets/images/product/{{it.hinhanh}}" style="width: 50px; height: 50px;"></th>
+                                            <td>{{it.tenmon}}</td>
+                                            <td>{{it.soluong}}</td>
+                                            <td>{{it.gia}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Accordion card -->
+
+                </div>
+                <!-- Accordion wrapper -->
+            </div>
+            <div class="container" *ngIf="item.length ==0">
+                <div class="text-center">
+                    <h5>Đơn hàng rỗng</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div #couponPage>
+
+</div>

@@ -1,0 +1,222 @@
+<div class="banner-wrapper no_background">
+    <div class="banner-wrapper-inner">
+        <nav class="kobolg-breadcrumb container"><a href="#" [routerLink]="['/trangchu']">Trang chủ</a><i class="fa fa-angle-right"></i>
+            <a href="#" [routerLink]="['/loaimon',loaimon.id]">{{loaimon.tenloai}}</a>
+            <i class="fa fa-angle-right"></i>{{item.tenmon}}
+        </nav>
+    </div>
+</div>
+<div class="single-thumb-vertical main-container shop-page no-sidebar">
+    <div class="container">
+        <div class="row">
+            <div class="main-content col-md-12">
+                <div class="kobolg-notices-wrapper"></div>
+                <div id="product-27" class="post-27 product type-product status-publish has-post-thumbnail product_cat-table product_cat-new-arrivals product_cat-lamp product_tag-table product_tag-sock first instock shipping-taxable purchasable product-type-variable has-default-attributes">
+                    <div class="main-contain-summary">
+                        <div class="contain-left has-gallery">
+                            <div class="single-left">
+                                <div class="kobolg-product-gallery kobolg-product-gallery--with-images kobolg-product-gallery--columns-4 images">
+                                    <a href="#" class="kobolg-product-gallery__trigger">
+                                        <img draggable="false" class="emoji" alt="🔍" src="https://s.w.org/images/core/emoji/11/svg/1f50d.svg"></a>
+                                    <div class="flex-viewport">
+                                        <figure class="kobolg-product-gallery__wrapper">
+                                            <div class="kobolg-product-gallery__image">
+                                                <img alt="img" src="../../../../../assets/images/product/{{item.hinhanh}}">
+                                            </div>
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="summary entry-summary">
+                                <div class="flash">
+                                    <span class="onnew"><span class="text">New</span></span>
+                                </div>
+                                <h1 class="product_title entry-title">{{item.tenmon}}</h1>
+                                <p>
+                                    <span class="fa fa-star" [ngClass]="{'checked':avg>=1?true:false}"></span>
+                                    <span class="fa fa-star" [ngClass]="{'checked':avg>=2?true:false}"></span>
+                                    <span class="fa fa-star" [ngClass]="{'checked':avg>=3?true:false}"></span>
+                                    <span class="fa fa-star" [ngClass]="{'checked':avg>=4?true:false}"></span>
+                                    <span class="fa fa-star" [ngClass]="{'checked':avg>=5?true:false}"></span>
+                                </p>
+                                <p class="price"><span class="kobolg-Price-amount amount"><span
+                                        class="kobolg-Price-currencySymbol"></span>{{item.gia.toLocaleString('vi', {style : 'currency', currency : 'VND'}) }}</span>
+                                </p>
+                                <form class="variations_form cart">
+                                    <div class="single_variation_wrap">
+                                        <div class="kobolg-variation single_variation"></div>
+                                        <div class="kobolg-variation-add-to-cart variations_button">
+                                            <div>
+                                                <span class="qty-label">Số lượng:</span>
+                                                <div>
+                                                    <input #soluong (keyup)="changequantity(soluong.value)" value="1" type="text" min="1" max="10"> &nbsp;&nbsp;
+                                                    <small id="error_sl"></small>
+                                                </div>
+                                            </div>
+                                            <br><br>
+                                            <button type="button" style="cursor: pointer;" (click)="addcart(item)" class="single_add_to_cart_button button alt kobolg-variation-selection-needed">
+                                                Thêm vào giỏ hàng
+                                            </button>
+                                            <input name="add-to-cart" value="27" type="hidden">
+                                            <input name="product_id" value="27" type="hidden">
+                                            <input name="variation_id" class="variation_id" value="0" type="hidden">
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="clear"></div>
+                                <div class="kobolg-share-socials">
+                                    <h5 class="social-heading">Chia sẻ: </h5>
+                                    <a target="_blank" class="facebook" href="#">
+                                        <i class="fa fa-facebook-f"></i>
+                                    </a>
+                                    <a target="_blank" class="twitter" href="#"><i class="fa fa-twitter"></i>
+                                    </a>
+                                    <a target="_blank" class="pinterest" href="#"> <i class="fa fa-pinterest"></i>
+                                    </a>
+                                    <a target="_blank" class="googleplus" href="#"><i class="fa fa-google-plus"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kobolg-tabs kobolg-tabs-wrapper">
+                        <ul class="tabs dreaming-tabs" role="tablist">
+                            <li class="description_tab active" id="tab-title-description" role="tab" aria-controls="tab-description">
+                                <a href="#tab-description" (click)="tag=1">Chi tiết sản phẩm</a>
+                            </li>
+                            <!-- <li class="reviews_tab" id="tab-title-reviews" role="tab" aria-controls="tab-reviews">
+                                <a href="#tab-reviews" (click)="tag=2">Bình luận ({{binhluan.length==0?0:binhluan.length}})</a>
+                            </li> -->
+                            <li class="reviews_tab" id="tab-title-reviews" role="tab" aria-controls="tab-common">
+                                <a href="#tab-common" (click)="tag=3">Đánh giá</a>
+                            </li>
+                        </ul>
+                        <div *ngIf="tag==1" class="kobolg-Tabs-panel kobolg-Tabs-panel--description panel entry-content kobolg-tab" id="tab-description" role="tabpanel" aria-labelledby="tab-title-description">
+                            <h2>Mô tả</h2>
+                            <div [innerHTML]="item.mota"></div>
+                        </div>
+                        <div *ngIf="tag==2" class="kobolg-Tabs-panel kobolg-Tabs-panel--reviews panel entry-content kobolg-tab" id="tab-reviews" role="tabpanel" aria-labelledby="tab-title-reviews">
+                            <div id="reviews" class="kobolg-Reviews">
+                                <div id="comments">
+                                    <h2 class="kobolg-Reviews-title">Nhận xét</h2>
+                                    <p class="kobolg-noreviews" *ngIf="binhluan.length == 0">Hiện tại không có đánh giá nào.</p>
+                                    <ng-container class="kobolg-noreviews" *ngIf="binhluan.length != 0">
+                                        <div class="comments-container">
+                                            <ul id="comments-list" class="comments-list">
+                                                <li *ngFor="let bl of binhluan">
+                                                    <div class="comment-main-level">
+                                                        <!-- Avatar -->
+                                                        <div class="comment-avatar">
+                                                            <img *ngIf="bl.idFB == null" src="../../../../../assets/images/user/{{bl.hinhanh}}" alt="">
+                                                            <img *ngIf="bl.idFB != null" src="{{bl.hinhanh}}" alt="">
+                                                        </div>
+                                                        <!-- Contenedor del Comentario -->
+                                                        <div class="comment-box">
+                                                            <div class="comment-head">
+                                                                <h6 class="comment-name"><a href="http://creaticode.com/blog">{{bl.hoten}}</a></h6>
+                                                                <span>{{bl.ngaybinhluan | date:'dd/MM/yyyy'}}</span>
+                                                                <!-- <i class="fa fa-reply"></i>
+                                                                <i class="fa fa-heart"></i> -->
+                                                                <i>
+                                                                    <span class="fa fa-star" [ngStyle]="{'color':bl.rate>=1?'orange':''}"></span>
+                                                                    <span class="fa fa-star" [ngStyle]="{'color':bl.rate>=2?'orange':''}"></span>
+                                                                    <span class="fa fa-star" [ngStyle]="{'color':bl.rate>=3?'orange':''}"></span>
+                                                                    <span class="fa fa-star" [ngStyle]="{'color':bl.rate>=4?'orange':''}"></span>
+                                                                    <span class="fa fa-star" [ngStyle]="{'color':bl.rate>=5?'orange':''}"></span>
+                                                                </i>
+                                                            </div>
+                                                            <div class="comment-content">
+                                                                {{bl.noidung}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div *ngIf="tag==3" class="kobolg-Tabs-panel kobolg-Tabs-panel--reviews panel entry-content kobolg-tab" id="tab-common" role="tabpanel" aria-labelledby="tab-title-reviews">
+                            <div id="reviews" class="kobolg-Reviews">
+                                <div *ngIf="user!=null?true:false" id="review_form_wrapper">
+                                    <div id="review_form">
+                                        <div id="respond" class="comment-respond">
+                                            <span id="reply-title" class="comment-reply-title" *ngIf="binhluan.length == 0">Hãy là người đầu tiên nhận xét “{{item.tenmon}}”</span>
+                                            <form id="commentform" class="comment-form">
+                                                <p class="comment-form-author">
+                                                    <img *ngIf="user.idFb!=null" class="img-profile rounded-circle" src="{{user.hinhanh}}" style="width: 40px; height: 40px; border: black .5px solid;">
+                                                    <img *ngIf="user.idFb==null" class="img-profile rounded-circle" src="../../../../assets/images/user/{{user.hinhanh}}" style="width: 40px; height: 40px; border: black .5px solid;">
+                                                    <span class="mr-2 d-none d-lg-inline"> &nbsp;&nbsp;{{user.hoten}}</span>
+                                                </p>
+                                                <div class="comment-form-rating"><label for="rating">Đánh giá</label>
+                                                    <p class="stars">
+                                                        <span>
+                                                        <a class="star-1" href="#" (click) ="star = 1">1</a>
+                                                        <a class="star-2" href="#" (click) ="star = 2">2</a>
+                                                        <a class="star-3" href="#" (click) ="star = 3">3</a>
+                                                        <a class="star-4" href="#" (click) ="star = 4">4</a>
+                                                        <a class="star-5" href="#" (click) ="star = 5">5</a>
+                                                        </span>
+                                                    </p>
+                                                    <select title="product_cat" name="rating" id="rating" required="" style="display: none;">
+                                                        <option value="">Rate…</option>
+                                                        <option value="5">Perfect</option>
+                                                        <option value="4">Good</option>
+                                                        <option value="3">Average</option>
+                                                        <option value="2">Not that bad</option>
+                                                        <option value="1">Very poor</option>
+                                                    </select></div>
+                                                <p class="comment-form-comment"><label for="comment">
+                                                    Bình luận của bạn&nbsp;<span class="required">*</span></label>
+                                                    <textarea id="comment" name="comment" cols="45" rows="8" required="" #txtbinhluan></textarea>
+                                                    <small id="alert_bl" style="color: red;"></small>
+                                                </p>
+                                                <input name="wpml_language_code" value="en" type="hidden">
+                                                <p class="form-submit"><input name="submit" id="submit" (click)="onbinhluan(txtbinhluan.value, item.id)" class="submit" value="Bình luận" type="submit"> <input name="comment_post_ID" value="27" id="comment_post_ID" type="hidden">
+                                                    <input name="comment_parent" id="comment_parent" value="0" type="hidden">
+                                                </p>
+                                            </form>
+                                        </div>
+                                        <!-- #respond -->
+                                    </div>
+                                </div>
+                                <div *ngIf="user!=null?false:true" class="text-center" id="review_form_wrapper">Bạn cần đăng nhập trước khi đánh giá</div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 dreaming_related-product">
+                <div class="block-title">
+                    <h2 class="product-grid-title">
+                        <span>Sản phẩm liên quan</span>
+                    </h2>
+                </div>
+                <div class="row">
+                    <ng-container *ngFor="let sp of itemlienquan">
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="single-publication">
+                                <figure>
+                                    <a [routerLink]="['/sanpham/',sp.id]"><img src="../../../../../assets/images/product/{{sp.hinhanh}}" style="height: 200px;" alt="Publication Image"></a>
+
+                                    <ul>
+                                        <li><a href="javascript:void(0)" (click)="addcart_lq(sp)" title="Thêm giỏ hàng"><i class="fa fa-heart"></i></a></li>
+                                        <li><a href="javascript:void(0)" [routerLink]="['/sanpham/',sp.id]" title="Xem chi tiết"><i class="fa fa-search"></i></a></li>
+                                    </ul>
+                                </figure>
+
+                                <div class="publication-content">
+                                    <h3><a [routerLink]="['/sanpham/',sp.id]">{{sp.tenmon}}</a></h3>
+                                    <h4 class="price" style="color: black;">{{sp.gia.toLocaleString('vi', {style : 'currency', currency : 'VND'})}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

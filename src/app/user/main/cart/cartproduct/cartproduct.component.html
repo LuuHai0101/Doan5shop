@@ -1,0 +1,98 @@
+<div class="banner-wrapper has_background">
+    <img src="assets/images/banner-for-all2.jpg" class="img-responsive attachment-1920x447 size-1920x447" alt="img">
+    <div class="banner-wrapper-inner">
+        <h1 class="page-title container">Giỏ hàng</h1>
+        <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs container">
+            <ul class="trail-items breadcrumb">
+                <li class="trail-item trail-begin"><a href="#" [routerLink]="['/trangchu']"><span>Trang chủ</span></a></li>
+                <li class="trail-item trail-end active"><span>Giỏ hàng</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<main class="site-main main-container no-sidebar">
+    <div class="container">
+        <div class="row">
+            <div class="main-content col-md-12">
+                <div class="page-main-content">
+                    <div class="kobolg">
+                        <div class="kobolg-notices-wrapper"></div>
+                        <div class="kobolg-cart-form">
+                            <table class="shop_table shop_table_responsive cart kobolg-cart-form__contents" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th class="product-remove">&nbsp;</th>
+                                        <th class="product-thumbnail">&nbsp;</th>
+                                        <th class="product-name">Sản phẩm</th>
+                                        <th class="product-price">Giá</th>
+                                        <th class="product-quantity">Số lượng</th>
+                                        <th class="product-subtotal">Tổng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor="let sp of item">
+                                        <tr class="kobolg-cart-form__cart-item cart_item">
+                                            <td class="product-remove">
+                                                <a href="javascript:void(0)" (click)="deleteitem(sp.id)" class="remove" aria-label="Remove this item" data-product_id="27" data-product_sku="885B712">×</a></td>
+                                            <td class="product-thumbnail">
+                                                <a href="#" [routerLink]="['/sanpham',sp.id]"><img src="../../../../../assets/images/product/{{sp.hinhanh}}" class="attachment-kobolg_thumbnail size-kobolg_thumbnail" alt="img" width="600" height="778"></a>
+                                            </td>
+                                            <td class="product-name" data-title="Product">
+                                                <a href="#" [routerLink]="['/sanpham',sp.id]">{{sp.tenmon}}</a>
+                                            </td>
+                                            <td class="product-price" data-title="Price">
+                                                <span class="kobolg-Price-amount amount"><span
+                                                    class="kobolg-Price-currencySymbol"></span>{{sp.gia | currency: "VND":false }}</span>
+                                            </td>
+                                            <td class="product-quantity" data-title="Quantity">
+                                                <div class="quantity">
+                                                    <span class="qty-label">Số lượng:</span>
+                                                    <div class="control">
+                                                        <input type="text" value="{{sp.soluong}}" #soluong (change)="changequantiti(sp.id,soluong.value)" title="Qty" class="input-qty input-text qty text">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="product-subtotal" data-title="Total">
+                                                <span class="kobolg-Price-amount amount"><span
+                                                    class="kobolg-Price-currencySymbol"></span>{{sp.gia * sp.soluong | currency: "VND":false }}</span>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="cart-collaterals">
+                            <div class="cart_totals ">
+                                <h2>Giỏ hàng</h2>
+                                <table class="shop_table shop_table_responsive" cellspacing="0">
+                                    <tbody>
+                                        <tr class="cart-subtotal">
+                                            <th>Tổng sản phẩm</th>
+                                            <td data-title="Subtotal"><span class="kobolg-Price-amount amount"><span
+                                                class="kobolg-Price-currencySymbol"></span>{{total}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="order-total">
+                                            <th>Tổng giá</th>
+                                            <td data-title="Total"><strong><span
+                                                class="kobolg-Price-amount amount"><span
+                                                class="kobolg-Price-currencySymbol"></span>{{totalprice | currency: "VND":false }}</span></strong>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="kobolg-proceed-to-checkout mt-2">
+                                    <!-- <a href="#" class="checkout-button button alt kobolg-forward">Trở về trang chủ</a>
+                                    <a href="#" class="checkout-button button alt kobolg-forward">Xoá tất cả sản phẩm</a> -->
+                                    <a href="#" class="btn btn-primary" [routerLink]="['/trangchu']">Trở về trang chủ</a>
+                                    <a href="javascript:void(0)" (click)="clearcart()" class="btn btn-success ml-2">Xoá tất cả sản phẩm trong giỏ hàng</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
